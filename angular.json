@@ -37,9 +37,22 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/styles.scss",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/now-ui-dashboard.css",
+              "src/assets/demo/demo.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/core/jquery.min.js",
+              "src/assets/js/core/popper.min.js",
+              "src/assets/js/core/bootstrap.min.js",
+              "src/assets/js/plugins/perfect-scrollbar.jquery.min.js",
+              "src/assets/js/plugins/chartjs.min.js",
+              "src/assets/js/plugins/bootstrap-notify.js",
+              "src/assets/js/now-ui-dashboard.js",
+              "src/assets/demo/demo.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -97,6 +110,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -104,5 +118,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

@@ -1,0 +1,76 @@
+<div class="col-lg-12 mx-auto mt-3">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h5 class="card-category"></h5>
+        <h4 class="card-title text-center bg-dark text-light">Detalle de Venta</h4>
+        <br>
+      </div>
+      <div class="card-body">                     
+          <h4 class="card-title text-center bg-dark text-light">Datos del Cliente</h4>
+          <div class="form-row">
+            <div
+                class="table"
+            >
+                <table
+                    class="table table-light ml-2"
+                >
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Direccion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="">
+                            <td scope="row">{{venta.cliente.nombre}}</td>
+                            <td>{{venta.cliente.telefono}}</td>
+                            <td>{{venta.cliente.direccion}}</td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+            
+          </div>
+
+          <h4 class="card-title text-center bg-dark text-light">Detalle de productos</h4>
+          <div class="form-row">
+            <div
+                class="table"
+            >
+                <table
+                    class="table table-light ml-2"
+                >
+                    <thead>
+                        <tr>
+                            <th scope="col">Nro</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let prod of venta.productos">
+                            <td>{{prod.codproducto}}</td>
+                            <td>{{prod.descripcion}}</td>
+                            <td>{{prod.cantidad}}</td>
+                            <td>{{prod.precio}}</td>
+                            <td>{{prod.precio*prod.cantidad}}</td>
+                        </tr>
+                       <tr>
+                        <td>Total : {{venta.total}} </td>
+                       </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+          </div>
+      </div>
+      <div class="card-footer">
+        <!-- Contenido del pie de la tarjeta -->
+      </div>
+    </div>
+  </div>
+  

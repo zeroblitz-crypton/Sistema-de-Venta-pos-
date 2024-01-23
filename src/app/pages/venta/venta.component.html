@@ -1,0 +1,203 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">        
+      <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center;">
+            <h4 class="card-title" style="margin-right: 10px;">Datos del Cliente</h4>
+            <button (click)="openModalCliente()" type="button" class="btn btn-primary">
+                <i class="now-ui-icons ui-1_simple-add"></i>
+            </button>
+        </div>
+        
+    </div>
+
+
+      
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="col-md-4 pr-1">
+              
+                  <label for="exampleDataList" class="form-label">Nombre</label>
+                  <input name="nombreCliente" [(ngModel)]="nombreCliente"  class="form-control" disabled>
+                                            
+              </div>
+              <div class="col-md-3 px-1">
+                <div class="form-group">
+                  <label>Telefono</label>
+                  <input name="telefonoCliente" [(ngModel)]="telefonoCliente" type="text" class="form-control" disabled placeholder="" >
+                </div>
+              </div>
+              <div class="col-md-4 pl-1">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Direccion</label>
+                  <input name="direccionCliente" [(ngModel)]="direccionCliente"  type="text" class="form-control" disabled placeholder="">
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+                
+                <div class="col-lg-12">
+                    <div class="card card-chart">
+                      <div class="card-header">
+                       
+                      </div>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-4 pr-1">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-category"><strong>Vendedor : </strong>{{usuario.nombre}}</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>Buscar Producto :</label>
+                                        <input type="text" class="form-control" (keyup)="searchProducto()" name="searchProd" [(ngModel)]="searchProd" placeholder="Buscar por código o nombre">               
+                                    </div>
+                        
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="text-primary">                                           
+                                                <th>
+                                                    Descripcion
+                                                </th>
+                                                <th>
+                                                    Cantidad
+                                                </th>
+                                                <th>
+                                                    Precio
+                                                </th>
+                                                <th class="text-right">
+                                                    Accion
+                                                </th>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let prod of productos.slice(0,5)">
+                                                    <td>
+                                                        {{prod.descripcion}}
+                                                    </td>
+                                                    <td>
+                                                        {{prod.existencia}}
+                                                    </td>
+                                                    <td>
+                                                        {{prod.precio}}
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <button *ngIf="prod.existencia > 0" (click)="agregarListaVenta(prod)" type="button" class="btn btn-success">
+                                                            <i class="now-ui-icons ui-1_simple-add"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                              <div class="col-md-8" *ngIf="listaVenta.length>0">
+                                <div class="card">
+                                  <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <h4 class="card-title">Lista de Venta</h4>
+                                        </div>
+                                        <div class="col-md-4" *ngIf="precioTotal()>0">
+                                          <div class="alert alert-primary" role="alert">
+                                            <strong>Total : </strong> {{precioTotal()}}
+                                            <i (click)="cancelarListaVenta()" class="now-ui-icons ui-1_simple-remove" style="float: right; cursor: pointer;"></i>
+                                          </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                                    <div class="card-body">                                        
+                                      <div class="table-responsive">
+                                        <table class="table">
+                                          <thead class=" text-primary">
+                                            <th>
+                                              id
+                                            </th>
+                                            <th>
+                                              Descripcion
+                                            </th>
+                                            <th>
+                                              Cantidad
+                                            </th>
+                                            <th>
+                                                Precio
+                                              </th>
+                                            <th>
+                                                Precio Total
+                                            </th>
+                                            <th class="text-right">
+                                                Accion
+                                            </th>
+                                            
+                                          </thead>
+                                          <tbody>
+                                            <tr *ngFor="let prod of listaVenta">
+                                              <td>
+                                                {{prod.codproducto}}
+                                              </td>
+                                              <td>
+                                                {{prod.descripcion}}
+                                              </td>
+                                              <td>
+                                                {{prod.existencia}}
+                                              </td>
+                                              <td>
+                                                {{prod.precio}}
+                                              </td>
+                                              <td>
+                                                {{prod.precio*prod.existencia}}
+                                              </td>
+                                              <td>
+                                                <button
+                                                  type="button"
+                                                  class="btn btn-danger"
+                                                  (click)="quitarListaVenta(prod)"
+                                                >
+                                                  <i class="now-ui-icons ui-1_simple-delete"></i>
+                                                </button>
+                                                
+                                              </td>
+                                            </tr>
+                                            
+                                          </tbody>
+                                          <br>
+                                          
+                                          
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <button
+                                      type="button"
+                                      class="btn btn-primary"
+                                      (click)="guardarVenta()"
+                                  >
+                                      Generar Venta
+                                  </button>
+                              </div>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        
+                      </div>
+                    </div>
+                    
+                  </div>
+              
+            </div>
+            
+            
+
+          </form>
+        </div>
+      </div>
+    </div>
+    
+  </div>

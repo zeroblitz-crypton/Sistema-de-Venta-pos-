@@ -1,0 +1,64 @@
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <h4 class="card-title">Ventas</h4>
+            <div class="form-group">
+                <input type="text" 
+                (keyup)="searchVentas()"
+                name="searchVenta" [(ngModel)]="searchVenta" 
+                class="form-control" placeholder="Buscar..">
+            </div>
+        </div>
+        
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                #
+              </th>
+              <th>
+                Cliente
+              </th>
+              <th>
+                Total
+              </th>
+              <th>
+                Fecha
+              </th>
+              <th>
+
+              </th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let venta of ventas">
+                <td>
+                  {{venta.venta_id}}
+                </td>
+                <td>
+                  {{venta.cliente_nombre}}
+                </td>
+                <td>
+                  S/. {{venta.total}}
+                </td>
+                <td>
+                    {{formatDate(venta.fecha)}}
+                </td>
+                <td>
+                    <button
+                    [routerLink]="['/ventaspdf',venta.venta_id]"
+                        type="button"
+                        class="btn btn-primary"
+                    >
+                        <i class="now-ui-icons files_paper"></i>
+                    </button>
+                    
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,35 @@
+<!-- permisos.component.html -->
+<div class="col-lg-12 mx-auto mt-3">
+    <div class="card card-chart">
+        <div class="card-header">
+            <h5 class="card-category"></h5>
+            <h4 class="card-title">Permisos de Usuario</h4>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="guardarPermisos()">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3" *ngFor="let permiso of permisos">
+                        <button
+                            type="button"
+                            class="btn btn-light custom-btn"
+                            [class.btn-success]="hasPermission(permiso.id)"
+                            (click)="togglePermission(permiso.id)"
+                        >
+                            {{ permiso.nombre.toUpperCase() }}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                        <button type="button" (click)="closeModal()" class="btn btn-danger ml-2">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <!-- Contenido del pie de la tarjeta -->
+        </div>
+    </div>
+</div>

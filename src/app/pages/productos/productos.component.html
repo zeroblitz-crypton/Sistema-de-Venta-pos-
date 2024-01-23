@@ -1,0 +1,79 @@
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center;">
+                <h4 class="card-title" style="margin-right: 10px;">Productos</h4>
+                <button (click)="openModalProducto(null)" type="button" class="btn btn-success">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                </button>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" (keyup)="searchProductos()" name="searchProd" [(ngModel)]="searchProd" placeholder="Buscar por código o nombre">
+            </div>
+        </div>
+        
+        
+        
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                #
+              </th>
+              <th>
+                Codigo
+              </th>
+              <th>
+                Producto
+              </th>
+              <th>
+                Precio
+              </th>
+              <th>
+                Stock
+              </th>
+              <th>
+                Estado
+              </th>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let producto of productos">
+                <td>
+                  {{producto.codproducto}}
+                </td>
+                <td>
+                  {{producto.codigo}}
+                </td>
+                <td>
+                 {{producto.descripcion}}
+                </td>
+                <td>
+                   {{producto.precio}}
+                </td>
+                <td>
+                  {{producto.existencia}}
+                </td>
+                <td>
+                  <span class="badge badge-pill" [ngClass]="{'badge-success': producto.estado, 'badge-danger': !producto.estado}">
+                    {{ producto.estado ? "Activo" : "Inactivo" }}
+                  </span>
+                </td>
+                <td>
+                           
+                    <button (click)="openModalProducto(producto)" type="button" class="btn btn-info ml-1">
+                        <i class="now-ui-icons ui-2_settings-90"></i>
+                    </button>  
+                    <button (click)="eliminarProducto(producto.codproducto)" type="button" class="btn btn-danger ml-1">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                    </button>           
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

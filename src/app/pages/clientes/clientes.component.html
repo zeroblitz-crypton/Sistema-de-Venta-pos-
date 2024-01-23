@@ -1,0 +1,76 @@
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center;">
+                <h4 class="card-title" style="margin-right: 10px;">Clientes</h4>
+                <button (click)="openModal(null)" type="button" class="btn btn-success">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                </button>
+            </div>
+            <div class="form-group">
+                <input 
+                (keyup)="searchClientes()"
+                name="searchCliente" [(ngModel)]="searchCliente" 
+                type="text" class="form-control" placeholder="Buscar..">
+            </div>
+        </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                #
+              </th>
+              <th>
+                Nombre
+              </th>
+              <th>
+                Telefono
+              </th>
+              <th>
+                Direccion
+              </th>
+              <th>
+                Estado
+              </th>
+              
+              <th></th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of clientes">
+                <td>
+                  {{cliente.idcliente}}
+                </td>
+                <td>
+                  {{cliente.nombre}}
+                </td>
+                <td>
+                  {{cliente.telefono}}
+                </td>
+                <td>
+                  {{cliente.direccion}}
+                </td>
+                <td>
+                  <span class="badge badge-pill" [ngClass]="{'badge-success': cliente.estado, 'badge-danger': !cliente.estado}">
+                    {{ cliente.estado ? "Activo" : "Inactivo" }}
+                  </span>
+                  
+                </td>
+                
+                <td>
+                         
+                    <button (click)="openModal(cliente)" type="button" class="btn btn-info ml-1">
+                        <i class="now-ui-icons ui-2_settings-90"></i>
+                    </button>  
+                    <button (click)="eliminarCliente(cliente.idcliente)" type="button" class="btn btn-danger ml-1">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                    </button>           
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,81 @@
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center;">
+                <h4 class="card-title" style="margin-right: 10px;">Usuarios</h4>
+                <button (click)="openModal(null)" type="button" class="btn btn-success">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                </button>
+            </div>
+            <div class="form-group">
+                <input type="text" 
+                (keyup)="searchUsuarios()"
+                name="searchUsuario" [(ngModel)]="searchUsuario" 
+                class="form-control" placeholder="Buscar..">
+            </div>
+        </div>
+        
+        
+        
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                #
+              </th>
+              <th>
+                Usuario
+              </th>
+              <th>
+                Nombre
+              </th>
+              <th>
+                Correo
+              </th>
+              <th>
+                Estado
+              </th>
+              
+              <th></th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let usuario of usuarios">
+                <td>
+                  {{usuario.idusuario}}
+                </td>
+                <td>
+                  {{usuario.usuario}}
+                </td>
+                <td>
+                 {{usuario.nombre}}
+                </td>
+                <td>
+                    {{usuario.correo}}
+                   </td>
+                <td>
+                  <span class="badge badge-pill" [ngClass]="{'badge-success': usuario.estado, 'badge-danger': !usuario.estado}">
+                    {{ usuario.estado ? "Activo" : "Inactivo" }}
+                  </span>
+                </td>
+                
+                
+                <td>
+                    <button (click)="openModalPermiso(usuario.idusuario)" type="button" class="btn btn-primary ml-1">
+                        <i class="now-ui-icons objects_key-25"></i>
+                    </button>      
+                    <button (click)="openModal(usuario)"  type="button" class="btn btn-info ml-1">
+                        <i class="now-ui-icons ui-2_settings-90"></i>
+                    </button>  
+                    <button (click)="eliminarUsuario(usuario.idusuario)" type="button" class="btn btn-danger ml-1">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                    </button>           
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
